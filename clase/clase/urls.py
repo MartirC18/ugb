@@ -16,9 +16,11 @@ Including another URLconf
 from django import views
 from django.contrib import admin
 from django.urls import path
-from app_progra.views import *
+from app_progra.views import index,agregarclientes,adminclientes
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',index)
+    path('',index),
+    path('registro/',adminclientes, name="adminclientes"),
+    path('agregarclientes/',agregarclientes),
 ]

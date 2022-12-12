@@ -1,34 +1,28 @@
 from django.db import models
 class VEHICULOS(models.Model):
-    id_vehiculo=models.IntegerField
-    marca=models.CharField(max_length=200)
-    modelo=models.CharField(max_length=200)
-    anio=models.IntegerField
-    tipo=models.CharField(max_length=200)
-    disponibilidad=models.CharField(max_length=200)
+    marca=models.CharField(max_length=100)
+    modelo=models.CharField(max_length=100)
+    anio=models.CharField(max_length=100,null=True)
+    tipo=models.CharField(max_length=100)
+    disponibilidad=models.CharField(max_length=100)
 
 class CLIENTES(models.Model):
-    id_cliente=models.IntegerField
-    Nombre_Cliente=models.CharField(max_length=200)
-    Apellido=models.CharField(max_length=200)
-    Direccion=models.ForeignKey(Area,on_delete=models.CASCADE)
-    Telefono=models.IntegerField
-    Edad=models.IntegerField
-    Sexo=models.CharField(max_length=200)
+    Nombre_Cliente=models.CharField(max_length=100)
+    Direccion=models.CharField(max_length=100)
+    Telefono=models.CharField(max_length=100,null=True)
+    Edad=models.CharField(max_length=100,null=True)
+    Sexo=models.CharField(max_length=100)
 
 class EMPLEADOS(models.Model):
-    id_empleado=models.IntegerField
-    Nombre=models.CharField(max_length=200)
-    Apellido=models.CharField(max_length=200)
-    Edad=models.IntegerField
-    Telefono=models.IntegerField
-    Sexo=models.CharField(max_length=200)
+    Nombre=models.CharField(max_length=100)
+    Edad=models.CharField(max_length=100,null=True)
+    Telefono=models.CharField(max_length=100,null=True)
+    Sexo=models.CharField(max_length=100)
 
 
 
 class Registro(models.Model):
-    cliente_id=models.CharField(max_length=200)
-    vehiculo_id=models.IntegerField
+    Cliente_id=models.ForeignKey(CLIENTES,on_delete=models.CASCADE,null=True)
+    vehiculo_id=models.ForeignKey(VEHICULOS,on_delete=models.CASCADE,null=True)
     Fecha_Salida=models.DateField
-    Fecha_Ingreso=models.DateField
-    empleado_id=models.IntegerField
+    empleado_id=models.ForeignKey(EMPLEADOS,on_delete=models.CASCADE,null=True)
